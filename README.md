@@ -1,4 +1,4 @@
-# portto-frontend-interview-project
+# crypto-collectable-wallet
 
 ## Library
 - vue
@@ -6,6 +6,9 @@
 - element-ui (import components on demand)
 - axios (data retrieval)
 - vue-infinite-loading (infinite scrolling)
+
+## Demo
+[http://gcdeng.com/crypto-collectable-wallet/](http://gcdeng.com/crypto-collectable-wallet/)
 
 ## Project setup
 ```

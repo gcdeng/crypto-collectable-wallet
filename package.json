@@ -1,8 +1,11 @@
 {
-  "name": "portto-frontend-interview-project",
+  "name": "crypto-collectable-wallet",
+  "homepage": "https://gcdeng.github.io/crypto-collectable-wallet",
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist",
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint"
@@ -11,6 +14,7 @@
     "axios": "^0.21.0",
     "core-js": "^3.6.5",
     "element-ui": "^2.14.1",
+    "gh-pages": "^3.1.0",
     "vue": "^2.6.11",
     "vue-infinite-loading": "^2.4.5",
     "vue-router": "^3.2.0"
