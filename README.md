@@ -1,5 +1,12 @@
 # portto-frontend-interview-project
 
+## Library
+- vue
+- vue-router (client side navigation)
+- element-ui (import components on demand)
+- axios (data retrieval)
+- vue-infinite-loading (infinite scrolling)
+
 ## Project setup
 ```
 npm install
