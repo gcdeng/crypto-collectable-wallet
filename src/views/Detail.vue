@@ -8,12 +8,12 @@
         @click="$router.go(-1)"
       >
       </el-button>
-      <h1>{{ collectionName }}</h1>
+      <h1>{{ error ? "Opps, something went wrong" : collectionName }}</h1>
     </header>
-    <img :src="imageUrl" alt="asset-image" />
+    <img :src="imageUrl" />
     <h2>{{ name }}</h2>
     <p class="description">{{ description }}</p>
-    <a :href="permalink" target="_blank" class="permalink">
+    <a v-if="!error" :href="permalink" target="_blank" class="permalink">
       <el-button>Permalink</el-button>
     </a>
   </div>
@@ -33,7 +33,8 @@ export default {
       imageUrl: "",
       name: "",
       description: "",
-      permalink: ""
+      permalink: "",
+      error: false
     };
   },
   computed: {
@@ -46,16 +47,21 @@ export default {
   },
   async created() {
     let loadingInstance = Loading.service();
-    const { data } = await getAsset({
-      assetContractAddress: this.assetContractAddress,
-      tokenId: this.tokenId
-    });
-    this.collectionName = data.collection.name;
-    this.imageUrl = data.image_url;
-    this.name = data.name;
-    this.description = data.description;
-    this.permalink = data.permalink;
-    loadingInstance.close();
+    try {
+      const { data } = await getAsset({
+        assetContractAddress: this.assetContractAddress,
+        tokenId: this.tokenId
+      });
+      this.collectionName = data.collection.name;
+      this.imageUrl = data.image_preview_url;
+      this.name = data.name;
+      this.description = data.description;
+      this.permalink = data.permalink;
+    } catch (error) {
+      this.error = true;
+    } finally {
+      loadingInstance.close();
+    }
   }
 };
 </script>

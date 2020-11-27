@@ -54,14 +54,18 @@ export default {
   },
   methods: {
     async infiniteHandler($state) {
-      const { data } = await getAssets({ offset: this.offset });
-      this.offset += data.assets.length;
-      if (data.assets.length > 0) {
-        this.assets.push(...data.assets.map(mapAsset));
-        $state.loaded();
-      }
-      if (data.assets.length < 20) {
-        $state.complete();
+      try {
+        const { data } = await getAssets({ offset: this.offset });
+        this.offset += data.assets.length;
+        if (data.assets.length > 0) {
+          this.assets.push(...data.assets.map(mapAsset));
+          $state.loaded();
+        }
+        if (data.assets.length < 20) {
+          $state.complete();
+        }
+      } catch (error) {
+        $state.error();
       }
     }
   }
